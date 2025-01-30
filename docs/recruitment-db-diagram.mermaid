@@ -1,0 +1,104 @@
+erDiagram
+    Applicant ||--o{ Application : submits
+    Applicant ||--o{ EmploymentHistory : has
+    Applicant ||--o{ Education : has
+    Applicant ||--|| PersonalDetails : has
+    Applicant ||--|| DiversityInformation : has
+    Applicant ||--|| LanguageSkills : has
+    
+    Applicant {
+        int applicant_id PK
+        datetime created_at
+        datetime updated_at
+        boolean email_notifications
+    }
+
+    PersonalDetails {
+        int personal_details_id PK
+        int applicant_id FK
+        varchar(50) title
+        varchar(100) first_name
+        varchar(100) last_name
+        varchar(100) other_names
+        varchar(200) address_line1
+        varchar(200) address_line2
+        varchar(100) town
+        varchar(100) county
+        varchar(20) post_code
+        varchar(100) country
+        varchar(20) phone_home
+        varchar(20) phone_work
+        varchar(20) phone_mobile
+        varchar(20) phone_other
+    }
+
+    Application {
+        int application_id PK
+        int applicant_id FK
+        varchar(200) position_applied_for
+        text reason_for_applying
+        text attraction_reason
+        varchar(100) vacancy_source
+        datetime application_date
+        varchar(50) status
+    }
+
+    EmploymentHistory {
+        int employment_id PK
+        int applicant_id FK
+        varchar(200) employer_name
+        varchar(200) position
+        date date_from
+        date date_to
+        decimal salary
+        varchar(100) notice_period
+        text duties
+        text leaving_reason
+        boolean is_current
+    }
+
+    Education {
+        int education_id PK
+        int applicant_id FK
+        varchar(200) qualification
+        varchar(100) subject
+        varchar(50) grade
+        date date_attained
+        text other_qualifications
+    }
+
+    DiversityInformation {
+        int diversity_id PK
+        int applicant_id FK
+        boolean eligible_to_work_uk
+        boolean criminal_convictions
+        text conviction_details
+        boolean disability_status
+        text disability_details
+        boolean prefer_not_say_disability
+        varchar(100) caring_responsibilities
+        varchar(50) age_range
+        varchar(50) gender
+        boolean gender_identity_change
+        boolean prefer_not_say_gender
+        varchar(50) sexual_orientation
+        varchar(50) marital_status
+        varchar(100) religion_belief
+        text other_beliefs
+        varchar(100) national_identity
+        varchar(100) other_national_identity
+        varchar(100) ethnic_group
+        varchar(100) other_ethnic_background
+        boolean pregnancy_status
+        boolean student_status
+        varchar(50) driving_license_status
+    }
+
+    LanguageSkills {
+        int language_skills_id PK
+        int applicant_id FK
+        varchar(20) welsh_speaking
+        varchar(20) welsh_reading
+        varchar(20) welsh_writing
+        varchar(20) preferred_language
+    }
