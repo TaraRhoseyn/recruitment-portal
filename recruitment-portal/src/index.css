@@ -222,7 +222,7 @@
 
   /* Layout Components */
   .sw-container {
-    @apply max-w-5xl mx-auto;
+    @apply mx-auto;
     padding: 0 var(--margin-small);
   }
 

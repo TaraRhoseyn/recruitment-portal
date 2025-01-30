@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { VACANCIES } from '../data/vacancies';
 import ProgressBar from './ProgressBar';
 import PersonalDetailsForm from './forms/PersonalDetailsForm';
 import EmploymentHistoryForm from './forms/EmploymentHistoryForm';
@@ -17,16 +19,40 @@ const steps = [
 ];
 
 const ApplicationForm = () => {
+	const { vacancyId } = useParams();
+	const navigate = useNavigate();
+	const vacancy = VACANCIES.find(v => v.id === parseInt(vacancyId));
+
 	const [currentStep, setCurrentStep] = useState(0);
 	const [completedSteps, setCompletedSteps] = useState([]);
 	const [formData, setFormData] = useState({
 		personal: {},
-		application: {},
+		application: {
+			vacancyId: vacancyId,
+			positionAppliedFor: vacancy?.title || ''
+		},
 		employment: {},
 		education: {},
 		diversity: {},
 		language: {}
 	});
+
+	// Redirect if vacancy not found
+	if (!vacancy) {
+		return (
+			<div className="sw-container py-8">
+				<div className="sw-notice">
+					<p className="font-semibold">Vacancy not found</p>
+					<button
+						onClick={() => navigate('/vacancies')}
+						className="text-blue-600 hover:underline"
+					>
+						Return to vacancies list
+					</button>
+				</div>
+			</div>
+		);
+	}
 
 	const handleStepClick = (stepIndex) => {
 		if (stepIndex <= Math.max(...completedSteps, currentStep)) {
@@ -37,7 +63,6 @@ const ApplicationForm = () => {
 
 	const handleNext = () => {
 		if (currentStep < steps.length - 1) {
-			// Add current step to completed steps if not already included
 			if (!completedSteps.includes(currentStep)) {
 				setCompletedSteps(prev => [...prev, currentStep].sort((a, b) => a - b));
 			}
@@ -55,7 +80,6 @@ const ApplicationForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// Add final step to completed steps
 		if (!completedSteps.includes(currentStep)) {
 			setCompletedSteps(prev => [...prev, currentStep].sort((a, b) => a - b));
 		}
@@ -84,6 +108,7 @@ const ApplicationForm = () => {
 					<ApplicationDetailsForm
 						data={formData.application}
 						updateData={(data) => updateFormData('application', data)}
+						vacancy={vacancy}
 					/>
 				);
 			case 'employment':
@@ -121,49 +146,58 @@ const ApplicationForm = () => {
 
 	return (
 		<div className="min-h-screen bg-[--color-light-grey]">
-			<ProgressBar
-				steps={steps}
-				currentStep={currentStep}
-				completedSteps={completedSteps}
-				onStepClick={handleStepClick}
-			/>
+			<div className="sw-container py-8">
+				<div className="mb-8 mt-10">
+					<h1 className="sw-heading-primary text-black">Application Form</h1>
+					<p className="mt-2 text-black text-lg">
+						Applying for: {vacancy.title}
+					</p>
+				</div>
 
-			<div className="min-h-screen mx-auto py-6">
-				<div className="bg-white rounded-lg shadow-lg p-8">
-					<form onSubmit={handleSubmit}>
-						{renderForm()}
+				<ProgressBar
+					steps={steps}
+					currentStep={currentStep}
+					completedSteps={completedSteps}
+					onStepClick={handleStepClick}
+				/>
 
-						<div className="flex justify-between mt-8">
-							<button
-								type="button"
-								onClick={handlePrevious}
-								className={`sw-button ${currentStep === 0
-										? 'bg-[--color-grey] cursor-not-allowed'
-										: 'sw-button-secondary'
-									}`}
-								disabled={currentStep === 0}
-							>
-								Previous
-							</button>
+				<div className="min-h-screen mx-auto py-6">
+					<div className="bg-white rounded-lg shadow-lg p-8">
+						<form onSubmit={handleSubmit}>
+							{renderForm()}
 
-							{currentStep === steps.length - 1 ? (
-								<button
-									type="submit"
-									className="sw-button sw-button-primary"
-								>
-									Submit Application
-								</button>
-							) : (
+							<div className="flex justify-between mt-8">
 								<button
 									type="button"
-									onClick={handleNext}
-									className="sw-button sw-button-primary"
+									onClick={handlePrevious}
+									className={`sw-button ${currentStep === 0
+											? 'bg-[--color-grey] cursor-not-allowed'
+											: 'sw-button-secondary'
+										}`}
+									disabled={currentStep === 0}
 								>
-									Next
+									Previous
 								</button>
-							)}
-						</div>
-					</form>
+
+								{currentStep === steps.length - 1 ? (
+									<button
+										type="submit"
+										className="sw-button sw-button-primary"
+									>
+										Submit Application
+									</button>
+								) : (
+									<button
+										type="button"
+										onClick={handleNext}
+										className="sw-button sw-button-primary"
+									>
+										Next
+									</button>
+								)}
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

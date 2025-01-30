@@ -1,25 +1,27 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { VacancyList, VacancyDetails } from './components/vacancy/';
 import ApplicationForm from './components/ApplicationForm';
-import Footer from './components/Footer';
 import Header from './components/Header';
-import './index.css';
+import Footer from './components/Footer';
 
 function App() {
 	return (
-		<div className="min-h-screen bg-[--color-light-grey]">
-			{/* Header */}
+		<Router>
 			<Header />
+			<Routes>
+				{/* Redirect root to vacancies */}
+				<Route path="/" element={<Navigate to="/vacancies" replace />} />
 
-			{/* Main Content */}
-			<main>
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-					<ApplicationForm />
-				</div>
-			</main>
+				{/* Vacancy routes */}
+				<Route path="/vacancies" element={<VacancyList />} />
+				<Route path="/vacancies/:id" element={<VacancyDetails />} />
 
-			{/* Footer */}
+				{/* Application form route */}
+				<Route path="/apply/:vacancyId" element={<ApplicationForm />} />
+			</Routes>
 			<Footer />
-		</div>
+		</Router>
 	);
 }
 

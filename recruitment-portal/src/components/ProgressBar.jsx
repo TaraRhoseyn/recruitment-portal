@@ -7,7 +7,7 @@ const ProgressBar = ({ steps, currentStep, completedSteps, onStepClick }) => {
 	};
 
 	return (
-		<div className="w-full py-4 px-6 bg-white">
+		<div className="w-full py-4 px-6 bg-white rounded-lg shadow-lg">
 			<div className="max-w-4xl mx-auto">
 				{/* Progress percentage */}
 				<div className="mb-4">
