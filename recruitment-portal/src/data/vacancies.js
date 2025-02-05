@@ -4,7 +4,7 @@ export const VACANCIES = [
 		id: 1,
 		title: "Communications Assistant",
 		department: "Communications and Digital",
-		location: "Sport Wales National Centre, Cardiff",
+		location: "Cardiff",
 		salary: "£26,582.64 - £29,307.36 (Grade 4)",
 		type: "Fixed Term Contract (15 months)",
 		closingDate: "2025-02-03",
@@ -35,13 +35,14 @@ export const VACANCIES = [
 			"Support the team in evaluating content and output to shape future activity.",
 			"Fulfil responsibilities which contribute to delivering an exemplary service for Sport Wales in respect of our statutory duties, including Well-being of Future Generations (Wales), Equality, Information Security, Risk Management, Safeguarding, Financial Regulation and Health, Safety & Environment.",
 			"Work flexibly, performing any other duties as required, where relevant to the post and appropriate to the grade."
-		]
+		],
+		imageUrl: "https://github.com/TaraRhoseyn/recruitment-portal/blob/master/recruitment-portal/src/assets/comms-job.jpg?raw=true"
 	},
 	{
 		id: 2,
 		title: "Insight Officer (Data Analyst)",
 		department: "Insight, Policy and Public Affairs ",
-		location: "Sport Wales National Centre, Cardiff",
+		location: "Cardiff",
 		salary: "£30,772.72 - £33,926.93 (Grade 5)",
 		type: "Full-time (37 hours)",
 		closingDate: "2025-02-12",
@@ -63,6 +64,8 @@ export const VACANCIES = [
 			"Supporting colleagues and partners to become insight-driven and learning-led in their approach and responding to any general Insight related queries.",
 			"Fulfil responsibilities which contribute to delivering an exemplary service for Sport Wales in respect of our statutory duties, including the Well-being of Future Generations (Wales), Equality, Information Security, Risk Management, Safeguarding, Financial Regulation and Health, Safety & Environment.",
 			"Work flexibly, performing any other duties as required, where relevant to the post and appropriate to the grade."
-		]
+		],
+		imageUrl: "https://github.com/TaraRhoseyn/recruitment-portal/blob/master/recruitment-portal/src/assets/insight-job.jpg?raw=true"
+
 	}
 ];
