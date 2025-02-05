@@ -18,232 +18,257 @@ const DiversityForm = ({ data, updateData }) => {
 				</p>
 			</div>
 
-			<div className="space-y-8">
-				{/* Work Eligibility Section */}
-				<div className="space-y-4">
-					<h3 className="sw-heading-secondary">Work Eligibility</h3>
-
-					<div className="space-y-4">
-						<div className="space-y-2">
-							<label className="sw-label block">Are you eligible to work in the UK?</label>
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+				{/* Left Column */}
+				<div className="space-y-8">
+					{/* Work Eligibility */}
+					<div>
+						<h3 className="sw-heading-secondary mb-4">Work Eligibility</h3>
+						<div className="space-y-6">
 							<div className="space-y-2">
-								<label className="sw-label inline-flex items-center">
-									<input
-										type="radio"
-										name="eligible_to_work_uk"
-										value="yes"
-										checked={data.eligible_to_work_uk === 'yes'}
-										onChange={handleChange}
-										className="sw-checkbox mr-2"
-									/>
-									Yes
-								</label>
-								<div>
+								<label className="sw-label block">Are you eligible to work in the UK?</label>
+								<div className="space-y-2">
 									<label className="sw-label inline-flex items-center">
 										<input
 											type="radio"
 											name="eligible_to_work_uk"
-											value="no"
-											checked={data.eligible_to_work_uk === 'no'}
+											value="yes"
+											checked={data.eligible_to_work_uk === 'yes'}
 											onChange={handleChange}
 											className="sw-checkbox mr-2"
 										/>
-										No
+										Yes
 									</label>
+									<div>
+										<label className="sw-label inline-flex items-center">
+											<input
+												type="radio"
+												name="eligible_to_work_uk"
+												value="no"
+												checked={data.eligible_to_work_uk === 'no'}
+												onChange={handleChange}
+												className="sw-checkbox mr-2"
+											/>
+											No
+										</label>
+									</div>
 								</div>
 							</div>
-						</div>
 
-						<div className="space-y-2">
-							<label className="sw-label block">Do you have any unspent criminal convictions?</label>
 							<div className="space-y-2">
-								<label className="sw-label inline-flex items-center">
-									<input
-										type="radio"
-										name="criminal_convictions"
-										value="yes"
-										checked={data.criminal_convictions === 'yes'}
-										onChange={handleChange}
-										className="sw-checkbox mr-2"
-									/>
-									Yes
-								</label>
-								<div>
+								<label className="sw-label block">Do you have any unspent criminal convictions?</label>
+								<div className="space-y-2">
 									<label className="sw-label inline-flex items-center">
 										<input
 											type="radio"
 											name="criminal_convictions"
-											value="no"
-											checked={data.criminal_convictions === 'no'}
+											value="yes"
+											checked={data.criminal_convictions === 'yes'}
 											onChange={handleChange}
 											className="sw-checkbox mr-2"
 										/>
-										No
+										Yes
 									</label>
+									<div>
+										<label className="sw-label inline-flex items-center">
+											<input
+												type="radio"
+												name="criminal_convictions"
+												value="no"
+												checked={data.criminal_convictions === 'no'}
+												onChange={handleChange}
+												className="sw-checkbox mr-2"
+											/>
+											No
+										</label>
+									</div>
 								</div>
 							</div>
-						</div>
 
-						{data.criminal_convictions === 'yes' && (
-							<div className="space-y-2 mt-4">
-								<label htmlFor="conviction_details" className="sw-label">
-									Please provide details of your conviction(s)
-								</label>
-								<textarea
-									id="conviction_details"
-									name="conviction_details"
-									value={data.conviction_details || ''}
-									onChange={handleChange}
-									rows={4}
-									className="sw-input w-full"
-									required
-								/>
-							</div>
-						)}
+							{data.criminal_convictions === 'yes' && (
+								<div className="space-y-2">
+									<label htmlFor="conviction_details" className="sw-label">
+										Please provide details of your conviction(s)
+									</label>
+									<textarea
+										id="conviction_details"
+										name="conviction_details"
+										value={data.conviction_details || ''}
+										onChange={handleChange}
+										rows={4}
+										className="sw-input w-full"
+										required
+									/>
+								</div>
+							)}
+						</div>
 					</div>
-				</div>
 
-				{/* Disability Section */}
-				<div className="space-y-4">
-					<h3 className="sw-heading-secondary">Disability</h3>
-
-					<div className="space-y-4">
-						<label className="sw-label">Do you consider yourself to have a disability?</label>
-						<div className="space-y-2">
-							<label className="sw-label inline-flex items-center">
-								<input
-									type="radio"
-									name="disability_status"
-									value="yes"
-									checked={data.disability_status === 'yes'}
-									onChange={handleChange}
-									className="sw-checkbox mr-2"
-								/>
-								Yes
-							</label>
-							<label className="sw-label inline-flex items-center">
-								<input
-									type="radio"
-									name="disability_status"
-									value="no"
-									checked={data.disability_status === 'no'}
-									onChange={handleChange}
-									className="sw-checkbox mr-2"
-								/>
-								No
-							</label>
-							<label className="sw-label inline-flex items-center">
-								<input
-									type="checkbox"
-									name="prefer_not_say_disability"
-									checked={data.prefer_not_say_disability || false}
-									onChange={handleChange}
-									className="sw-checkbox mr-2"
-								/>
-								Prefer not to say
-							</label>
-						</div>
-
-						{data.disability_status === 'yes' && (
+					{/* Personal Information Part 1 */}
+					<div>
+						<h3 className="sw-heading-secondary mb-4">Personal Information</h3>
+						<div className="space-y-6">
 							<div className="space-y-2">
-								<label htmlFor="disability_details" className="sw-label">
-									Please provide details of any support or adjustments you may require
+								<label htmlFor="age_range" className="sw-label">
+									Age Range
 								</label>
-								<textarea
-									id="disability_details"
-									name="disability_details"
-									value={data.disability_details || ''}
+								<select
+									id="age_range"
+									name="age_range"
+									value={data.age_range || ''}
 									onChange={handleChange}
-									rows={4}
 									className="sw-input w-full"
-									required
-								/>
+								>
+									<option value="">Select age range</option>
+									<option value="16-24">16-24</option>
+									<option value="25-34">25-34</option>
+									<option value="35-44">35-44</option>
+									<option value="45-54">45-54</option>
+									<option value="55-64">55-64</option>
+									<option value="65+">65+</option>
+									<option value="prefer_not_say">Prefer not to say</option>
+								</select>
 							</div>
-						)}
+
+							<div className="space-y-2">
+								<label htmlFor="gender" className="sw-label">
+									Gender
+								</label>
+								<select
+									id="gender"
+									name="gender"
+									value={data.gender || ''}
+									onChange={handleChange}
+									className="sw-input w-full"
+								>
+									<option value="">Select gender</option>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+									<option value="non_binary">Non-binary</option>
+									<option value="other">Other</option>
+									<option value="prefer_not_say">Prefer not to say</option>
+								</select>
+							</div>
+
+							<div className="space-y-2">
+								<label className="sw-label block">Is your gender identity different from your sex registered at birth?</label>
+								<div className="space-y-2">
+									<label className="sw-label inline-flex items-center">
+										<input
+											type="radio"
+											name="gender_identity_change"
+											value="yes"
+											checked={data.gender_identity_change === 'yes'}
+											onChange={handleChange}
+											className="sw-checkbox mr-2"
+										/>
+										Yes
+									</label>
+									<div>
+										<label className="sw-label inline-flex items-center">
+											<input
+												type="radio"
+												name="gender_identity_change"
+												value="no"
+												checked={data.gender_identity_change === 'no'}
+												onChange={handleChange}
+												className="sw-checkbox mr-2"
+											/>
+											No
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div className="space-y-2">
+								<label htmlFor="sexual_orientation" className="sw-label">
+									Sexual Orientation
+								</label>
+								<select
+									id="sexual_orientation"
+									name="sexual_orientation"
+									value={data.sexual_orientation || ''}
+									onChange={handleChange}
+									className="sw-input w-full"
+								>
+									<option value="">Select sexual orientation</option>
+									<option value="heterosexual">Heterosexual/Straight</option>
+									<option value="gay">Gay</option>
+									<option value="lesbian">Lesbian</option>
+									<option value="bisexual">Bisexual</option>
+									<option value="other">Other</option>
+									<option value="prefer_not_say">Prefer not to say</option>
+								</select>
+							</div>
+						</div>
 					</div>
 				</div>
 
-				{/* Personal Information Section */}
-				<div className="space-y-4">
-					<h3 className="sw-heading-secondary">Personal Information</h3>
+				{/* Right Column */}
+				<div className="space-y-8">
+					{/* Disability */}
+					<div>
+						<h3 className="sw-heading-secondary mb-4">Disability</h3>
+						<div className="space-y-6">
+							<div className="space-y-4">
+								<label className="sw-label">Do you consider yourself to have a disability?</label>
+								<div className="space-y-2">
+									<label className="sw-label inline-flex items-center">
+										<input
+											type="radio"
+											name="disability_status"
+											value="yes"
+											checked={data.disability_status === 'yes'}
+											onChange={handleChange}
+											className="sw-checkbox mr-2 ml-2"
+										/>
+										Yes
+									</label>
+									<label className="sw-label inline-flex items-center">
+										<input
+											type="radio"
+											name="disability_status"
+											value="no"
+											checked={data.disability_status === 'no'}
+											onChange={handleChange}
+											className="sw-checkbox mr-2 ml-2"
+										/>
+										No
+									</label>
+									<label className="sw-label inline-flex items-center">
+										<input
+											type="checkbox"
+											name="prefer_not_say_disability"
+											checked={data.prefer_not_say_disability || false}
+											onChange={handleChange}
+											className="sw-checkbox mr-2 ml-2"
+										/>
+										Prefer not to say
+									</label>
+								</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-						<div className="space-y-2">
-							<label htmlFor="age_range" className="sw-label">
-								Age Range
-							</label>
-							<select
-								id="age_range"
-								name="age_range"
-								value={data.age_range || ''}
-								onChange={handleChange}
-								className="sw-input w-full"
-							>
-								<option value="">Select age range</option>
-								<option value="16-24">16-24</option>
-								<option value="25-34">25-34</option>
-								<option value="35-44">35-44</option>
-								<option value="45-54">45-54</option>
-								<option value="55-64">55-64</option>
-								<option value="65+">65+</option>
-								<option value="prefer_not_say">Prefer not to say</option>
-							</select>
+								{data.disability_status === 'yes' && (
+									<div className="space-y-2">
+										<label htmlFor="disability_details" className="sw-label">
+											Please provide details of any support or adjustments you may require
+										</label>
+										<textarea
+											id="disability_details"
+											name="disability_details"
+											value={data.disability_details || ''}
+											onChange={handleChange}
+											rows={4}
+											className="sw-input w-full"
+											required
+										/>
+									</div>
+								)}
+							</div>
 						</div>
+					</div>
 
-						<div className="space-y-2">
-							<label htmlFor="gender" className="sw-label">
-								Gender
-							</label>
-							<select
-								id="gender"
-								name="gender"
-								value={data.gender || ''}
-								onChange={handleChange}
-								className="sw-input w-full"
-							>
-								<option value="">Select gender</option>
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-								<option value="non_binary">Non-binary</option>
-								<option value="other">Other</option>
-								<option value="prefer_not_say">Prefer not to say</option>
-							</select>
-						</div>
-
-						<div className="space-y-2">
-							<label className="sw-label inline-flex items-center">
-								<input
-									type="checkbox"
-									name="gender_identity_change"
-									checked={data.gender_identity_change || false}
-									onChange={handleChange}
-									className="sw-checkbox mr-2"
-								/>
-								Is your gender identity different from your sex registered at birth?
-							</label>
-						</div>
-
-						<div className="space-y-2">
-							<label htmlFor="sexual_orientation" className="sw-label">
-								Sexual Orientation
-							</label>
-							<select
-								id="sexual_orientation"
-								name="sexual_orientation"
-								value={data.sexual_orientation || ''}
-								onChange={handleChange}
-								className="sw-input w-full"
-							>
-								<option value="">Select sexual orientation</option>
-								<option value="heterosexual">Heterosexual/Straight</option>
-								<option value="gay">Gay</option>
-								<option value="lesbian">Lesbian</option>
-								<option value="bisexual">Bisexual</option>
-								<option value="other">Other</option>
-								<option value="prefer_not_say">Prefer not to say</option>
-							</select>
-						</div>
-
+					{/* Personal Information Part 2 */}
+					<div className="space-y-6">
 						<div className="space-y-2">
 							<label htmlFor="marital_status" className="sw-label">
 								Marital Status
@@ -359,77 +384,110 @@ const DiversityForm = ({ data, updateData }) => {
 							</select>
 						</div>
 					</div>
+				</div>
 
-					{/* Additional Information */}
-					<div className="space-y-4 mt-6">
-						<h3 className="sw-heading-secondary">Additional Information</h3>
-
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+				{/* Additional Information - Full Width Section */}
+				<div className="md:col-span-2 space-y-6">
+					<h3 className="sw-heading-secondary mb-4">Additional Information</h3>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div className="space-y-2">
+							<label className="sw-label block">Are you pregnant or have you given birth within the last 26 weeks?</label>
 							<div className="space-y-2">
 								<label className="sw-label inline-flex items-center">
 									<input
-										type="checkbox"
+										type="radio"
 										name="pregnancy_status"
-										checked={data.pregnancy_status || false}
+										value="yes"
+										checked={data.pregnancy_status === 'yes'}
 										onChange={handleChange}
 										className="sw-checkbox mr-2"
 									/>
-									Are you pregnant or have you given birth within the last 26 weeks?
+									Yes
 								</label>
+								<div>
+									<label className="sw-label inline-flex items-center">
+										<input
+											type="radio"
+											name="pregnancy_status"
+											value="no"
+											checked={data.pregnancy_status === 'no'}
+											onChange={handleChange}
+											className="sw-checkbox mr-2"
+										/>
+										No
+									</label>
+								</div>
 							</div>
+						</div>
 
-							<div className="space-y-2">
-								<label htmlFor="caring_responsibilities" className="sw-label">
-									Do you have any caring responsibilities?
-								</label>
-								<select
-									id="caring_responsibilities"
-									name="caring_responsibilities"
-									value={data.caring_responsibilities || ''}
-									onChange={handleChange}
-									className="sw-input w-full"
-								>
-									<option value="">Select option</option>
-									<option value="none">None</option>
-									<option value="primary_carer_child">Primary carer of child/children</option>
-									<option value="primary_carer_disabled_child">Primary carer of disabled child/children</option>
-									<option value="primary_carer_disabled_adult">Primary carer of disabled adult</option>
-									<option value="primary_carer_older_person">Primary carer of older person</option>
-									<option value="secondary_carer">Secondary carer</option>
-									<option value="prefer_not_say">Prefer not to say</option>
-								</select>
-							</div>
+						<div className="space-y-2">
+							<label htmlFor="caring_responsibilities" className="sw-label">
+								Do you have any caring responsibilities?
+							</label>
+							<select
+								id="caring_responsibilities"
+								name="caring_responsibilities"
+								value={data.caring_responsibilities || ''}
+								onChange={handleChange}
+								className="sw-input w-full"
+							>
+								<option value="">Select option</option>
+								<option value="none">None</option>
+								<option value="primary_carer_child">Primary carer of child/children</option>
+								<option value="primary_carer_disabled_child">Primary carer of disabled child/children</option>
+								<option value="primary_carer_disabled_adult">Primary carer of disabled adult</option>
+								<option value="primary_carer_older_person">Primary carer of older person</option>
+								<option value="secondary_carer">Secondary carer</option>
+								<option value="prefer_not_say">Prefer not to say</option>
+							</select>
+						</div>
 
-							<div className="space-y-2">
-								<label htmlFor="driving_license_status" className="sw-label">
-									Do you hold a valid driving license?
-								</label>
-								<select
-									id="driving_license_status"
-									name="driving_license_status"
-									value={data.driving_license_status || ''}
-									onChange={handleChange}
-									className="sw-input w-full"
-								>
-									<option value="">Select option</option>
-									<option value="full">Yes - Full License</option>
-									<option value="provisional">Yes - Provisional License</option>
-									<option value="no">No</option>
-									<option value="prefer_not_say">Prefer not to say</option>
-								</select>
-							</div>
+						<div className="space-y-2">
+							<label htmlFor="driving_license_status" className="sw-label">
+								Do you hold a valid driving license?
+							</label>
+							<select
+								id="driving_license_status"
+								name="driving_license_status"
+								value={data.driving_license_status || ''}
+								onChange={handleChange}
+								className="sw-input w-full"
+							>
+								<option value="">Select option</option>
+								<option value="full">Yes - Full License</option>
+								<option value="provisional">Yes - Provisional License</option>
+								<option value="no">No</option>
+								<option value="prefer_not_say">Prefer not to say</option>
+							</select>
+						</div>
 
+						<div className="space-y-2">
+							<label className="sw-label block">Are you currently a student?</label>
 							<div className="space-y-2">
 								<label className="sw-label inline-flex items-center">
 									<input
-										type="checkbox"
+										type="radio"
 										name="student_status"
-										checked={data.student_status || false}
+										value="yes"
+										checked={data.student_status === 'yes'}
 										onChange={handleChange}
 										className="sw-checkbox mr-2"
 									/>
-									Are you currently a student?
+									Yes
 								</label>
+								<div>
+									<label className="sw-label inline-flex items-center">
+										<input
+											type="radio"
+											name="student_status"
+											value="no"
+											checked={data.student_status === 'no'}
+											onChange={handleChange}
+											className="sw-checkbox mr-2"
+										/>
+										No
+									</label>
+								</div>
 							</div>
 						</div>
 					</div>
