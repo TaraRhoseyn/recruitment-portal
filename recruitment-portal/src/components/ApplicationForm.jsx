@@ -170,33 +170,54 @@ const ApplicationForm = () => {
 								<button
 									type="button"
 									onClick={handlePrevious}
-									className={`sw-button ${currentStep === 0
-											? 'bg-[--color-grey] cursor-not-allowed'
-											: 'sw-button-secondary'
+									className={`${currentStep === 0
+											? 'inline-flex items-center px-4 py-2 rounded-md text-sm font-medium bg-[--color-grey] text-black cursor-not-allowed'
+											: 'inline-flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
 										}`}
 									disabled={currentStep === 0}
 								>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-arrow-left w-4 h-4 mr-2"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
 									Previous
 								</button>
 
 								{currentStep === steps.length - 1 ? (
-									<button
-										type="submit"
-										className="sw-button sw-button-primary"
-									>
-										Submit Application
-									</button>
+									<div>
+										<button type="button" disabled="" className="
+											inline-flex items-center px-4 py-2 rounded-md 
+											text-sm font-medium transition-colors duration-200 
+											bg-gray-100 text-gray-700 mr-3
+										">
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-save w-4 h-4 mr-2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+											Save Draft
+										</button>
+										<button
+											type="submit"
+											className="sw-button sw-button-primary"
+										>
+											Submit Application
+										</button>
+									</div>
 								) : (
-									<button
-										type="button"
-										onClick={handleNext}
-										className="inline-flex items-center px-6 py-2 rounded-md 
-             text-sm font-medium transition-colors duration-200 
-             bg-sw-red text-white hover:bg-opacity-90"
-									>
-										Next
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right w-4 h-4 ml-2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-									</button>
+									<div className="flex items-center">
+										<button type="button" disabled="" className="
+											inline-flex items-center px-6 py-2 rounded-md 
+											text-sm font-medium transition-colors duration-200 
+											bg-gray-100 text-gray-700 mr-3
+										">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-save w-4 h-4 mr-2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+											Save Draft
+										</button>
+										<button
+											type="button"
+											onClick={handleNext}
+											className="inline-flex items-center px-6 py-2 rounded-md 
+												text-sm font-medium transition-colors duration-200 
+												bg-sw-red text-white hover:bg-opacity-90"
+										>
+											Next
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-arrow-right w-4 h-4 ml-2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+										</button>
+									</div>
 								)}
 							</div>
 						</form>
